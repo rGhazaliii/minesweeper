@@ -1,0 +1,327 @@
+/* normalize */
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #fff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff center center repeat-y;
+}
+
+p {
+    margin: 0;
+    padding: 1em 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+input:focus {
+    border: none;
+    outline: none;
+}
+
+label:hover {
+    cursor: pointer;
+}
+
+.font-15px {
+    font-size: 15px !important;
+}
+
+.font-16px {
+    font-size: 16px !important;
+}
+
+.font-17px {
+    font-size: 17px !important;
+}
+
+.font-18px {
+    font-size: 18px !important;
+}
+
+.font-19px {
+    font-size: 19px !important;
+}
+
+.font-20px {
+    font-size: 20px !important;
+}
+
+.font-21px {
+    font-size: 21px !important;
+}
+
+.font-22px {
+    font-size: 22px !important;
+}
+
+.font-23px {
+    font-size: 23px !important;
+}
+
+.font-24px {
+    font-size: 24px !important;
+}
+
+.font-25px {
+    font-size: 25px !important;
+}
+
+.color-fff {
+    color: #fff !important;
+}
+
+.color-f3473e {
+    color: #f3473e !important;
+}
+
+.color-4caf50 {
+    color: #4caf50 !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.margin-top-10px {
+    margin-top: 10px !important;
+}
+
+.margin-bottom-10px {
+    margin-bottom: 10px !important;
+}
+
+.padding-20px {
+    padding: 20px !important;
+}
+
+.padding-top-10px {
+    padding-top: 10px !important;
+}
+
+.padding-top-20px {
+    padding-top: 20px !important;
+}
+
+/* Custom tooltip styles */
+.tooltip-top,
+.tooltip-right,
+.tooltip-bottom,
+.tooltip-left {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-top .tooltip-text,
+.tooltip-right .tooltip-text,
+.tooltip-bottom .tooltip-text,
+.tooltip-left .tooltip-text {
+    visibility: hidden;
+    min-width: 200px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    -webkit-transition: opacity 2s;
+    -moz-transition: opacity 2s;
+    -o-transition: opacity 2s;
+    transition: opacity 2s;
+}
+
+.tooltip-right .tooltip-text {
+    top: -5px;
+    left: 105%;
+}
+
+.tooltip-left .tooltip-text {
+    top: -5px;
+    right: 105%;
+}
+
+.tooltip-top .tooltip-text {
+    width: 120px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+.tooltip-bottom .tooltip-text {
+    width: 120px;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+.tooltip-top:hover .tooltip-text,
+.tooltip-right:hover .tooltip-text,
+.tooltip-bottom:hover .tooltip-text,
+.tooltip-left:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip-top .tooltip-text::after,
+.tooltip-right .tooltip-text::after,
+.tooltip-bottom .tooltip-text::after,
+.tooltip-left .tooltip-text::after {
+    content: " ";
+    position: absolute;
+}
+
+.tooltip-top .tooltip-text::after {
+    top: 100%; /* At the bottom of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border: 5px solid transparent;
+    border-top-color: #000;
+}
+
+.tooltip-right .tooltip-text::after {
+    top: 50%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border: 5px solid transparent;
+    border-right-color: #000;
+}
+
+.tooltip-bottom .tooltip-text::after {
+    bottom: 100%; /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border: 5px solid transparent;
+    border-bottom-color: #000;
+}
+
+.tooltip-left .tooltip-text::after {
+    top: 50%;
+    left: 100%; /* To the right of the tooltip */
+    margin-top: -5px;
+    border: 5px solid transparent;
+    border-left-color: #000;
+}
+
+/* page layout */
+.row {
+    width: 480px;
+    margin: 0 auto;
+}
+
+/* Scenes */
+#game {
+    width: 480px;
+    height: 600px;
+    margin: 0 auto;
+    border: 2px solid #000;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+#game-scene {
+    background: #ADA996; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.board-parent {
+    width: 100%;
+}
+
+.board {
+    margin: 20px auto 20px;
+}
+
+#game table#board {
+    table-layout: auto;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+}
+
+#game table#board td {
+    font-size: 0px; /* Necessary for sizes under 26px */
+    padding: 0;
+    border: 1px solid #2a3c6c;
+}
+
+#game table#board button {
+    padding: 0;
+    transition: background-color 0.25s ease;
+}
+
+#game table#board td:hover,
+#game table#board button:hover {
+    cursor: pointer;
+    background-color: #ccc !important;
+}
+
+.scene {
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-transition: all .4s ease-out;
+    -moz-transition: all .4s ease-out;
+    transition: all .4s ease-out;
+}
+
+.scene.out {
+    top: -150%;
+}
+
+.scene.in {
+    top: 0;
+}
+
+.button {
+    width: 145px;
+    height: 39px;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    background: #f3efed no-repeat;
+    border-radius: 5px;
+    margin: auto auto 10px;
+    padding-top: 20px;
+    color: #000;
+}
+
+.button:hover {
+    color: #f3473e;
+}
+
+#start-scene {
+    background: url("../images/start_bg.gif") no-repeat;
+    background-size: cover;
+}
+
+#start-scene .button {
+    margin-bottom: 10px;
+}
+
+#options-scene {
+    background: url("../images/options_bg.jpg") no-repeat;
+    background-size: cover;
+}
+
+#help-scene {
+    background: url("../images/help_bg.jpg") no-repeat;
+    background-size: cover;
+}
+
+#about-scene {
+    background: url("../images/about_bg.jpg") no-repeat;
+    background-size: cover;
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Minesweeper HTML5 Game">
+    <meta name="keywords" content="Minesweeper,Web,Html5,JavaScript,CSS">
+    <meta name="author" content="r.Ghazali">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper</title>
+    <link rel="icon" href="fav.ico">
+    <link rel="stylesheet" href="css/game.css">
+    <noscript>Your browser does not support JavaScript!</noscript>
+</head>
+
+<body>
+<header>
+    <div class="row">
+        <h1 class="text-center color-f3473e">Minesweeper</h1>
+    </div>
+</header>
+
+<section id="game">
+    <div id="start-scene" class="scene padding-top-20px">
+        <a href="#" id="newgame-btn" class="button">New Game</a>
+        <a href="#" id="options-btn" class="button">Options</a>
+        <a href="#" id="help-btn" class="button">Help</a>
+        <a href="#" id="about-btn" class="button">About</a>
+    </div>
+
+    <div id="game-scene" class="scene out">
+        <div class="board-parent">
+            <table id="board" class="board"></table>
+        </div>
+
+        <div id="board-info">
+            <div id="timer"></div>
+            <div id="flagged-mines"></div>
+        </div>
+    </div>
+
+    <div id="options-scene" class="scene out">
+        <div id="difficulty" class="padding-20px color-fff font-25px">
+            <h1 class="text-center color-fff">Difficulty</h1>
+
+            <div class="margin-bottom-10px">
+                <label>
+                    <input type="radio" name="difficulty" value="beginner" checked>
+                    <span>Beginner - 10 Mines - 9 * 9 Grid</span>
+                </label>
+            </div>
+
+            <div class="margin-bottom-10px">
+                <label>
+                    <input type="radio" name="difficulty" value="intermediate">
+                    <span>Intermediate - 40 Mines - 16 * 16 Grid</span>
+                </label>
+            </div>
+
+            <div class="margin-bottom-10px">
+                <label>
+                    <input type="radio" name="difficulty" value="advanced">
+                    <span>Advanced - 99 Mines - 16 * 30 Grid</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div id="help-scene" class="scene out">
+        <div class="padding-20px color-fff font-25px">
+            Minesweeper is a deceptively simple test of memory and reasoning and one of the most popular Windows games
+            of all time. The goal is to find the empty squares and avoid the mines. Sounds easy, right?
+        </div>
+    </div>
+
+    <div id="about-scene" class="scene out">
+        <div class="padding-20px color-fff font-25px">
+            Minesweeper HTML5 game developed by <a target="_blank" href="https://twitter.com/rghazaliii"><span
+                class="font-16px color-f3473e">r.Ghazali</span></a>
+            for fun.
+        </div>
+    </div>
+
+    <div id="win-scene" class="scene out">
+        <h1>You Won The Game.</h1>
+    </div>
+
+    <div id="gameover-scene" class="scene out">
+        <p><a href="#" id="back-to-menu-button" class="button">Back to menu</a></p>
+    </div>
+</section>
+
+<footer>
+    <div class="row">
+        <p class="text-center color-f3473e">
+            Created with &hearts; in 2017
+        </p>
+    </div>
+</footer>
+
+<div class="templates scene out">
+    <a href="#" id="back-to-start" class="button">Main Menu</a>
+
+    <div class="tooltip-bottom" id="save-block-btn">
+        <a href="#" id="save-btn" class="button">Save</a>
+        <span class="tooltip-text">Your preferences will be reloaded even after you close your browser</span>
+    </div>
+</div>
+
+<script src="js/patch.js"></script>
+<script src="js/browser.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/board.js"></script>
+<script src="js/mine.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/timer.js"></script>
+<script src="js/game.js"></script>
+
+</body>
+</html>
