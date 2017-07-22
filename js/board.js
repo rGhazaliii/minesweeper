@@ -51,20 +51,36 @@
             board.current = board.getBoard();
         }
 
-        var selectedIndex = x * board.current.columns + y;
-        var selectedMine = game.mine.isMine(selectedIndex);
-
+        var selectedMine = game.mine.isMine(x, y);
         if (selectedMine) {
             alert('You lose!');
             game.board.resetSize();
             game.flow.startOver();
         } else {
-            traverseBoard();
+            traverseBoard(x, y);
         }
     };
 
-    var traverseBoard = function () {
+    var traverseBoard = function (x, y) {
 
+    };
+
+    var disableButton = function (row, column) {
+        var selector = "button[data-row='" + row + "']" + "[data-column='" + column + "']";
+        var btn = document.querySelector(selector);
+        btn.setAttribute('disabled', true);
+        btn.style.backgroundColor = '#ccc';
+    };
+
+    var incrementMineNumber = function (row, column) {
+        var selector = "button[data-row='" + row + "']" + "[data-column='" + column + "']";
+        var btn = document.querySelector(selector);
+
+        if (btn.textContent === '' || btn.textContent === undefined) {
+            btn.textContent = 1;
+        } else {
+            btn.textContent = parseInt(btn.textContent) + 1;
+        }
     };
 
     var board = game.board = {

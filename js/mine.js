@@ -26,11 +26,26 @@
                 }
             }
         },
-        isMine: function (i) {
-            return (mine.minesIndex[i]);
+        isMine: function (x, y) {
+            var selectedIndex = convertMineIndex(x, y);
+            return (mine.minesIndex[selectedIndex]);
+        },
+        replaceMine: function (x, y) {
+            var selectedIndex = convertMineIndex(x, y);
+
+            do {
+                var newMineIndex = Math.floor(Math.random() * mine.limit);
+            } while (mine.minesIndex[newMineIndex] === 1);
+
+            mine.minesIndex[selectedIndex] = 0;
+            mine.minesIndex[newMineIndex] = 1;
         },
         getMinesIndex: function () {
             return this.minesIndex;
         }
+    };
+
+    var convertMineIndex = function (x, y) {
+        return x * game.board.current.columns + y;
     };
 })();
