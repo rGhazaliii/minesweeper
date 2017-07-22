@@ -56,6 +56,7 @@
 
         if (selectedMine) {
             alert('You lose!');
+            game.board.resetSize();
             game.flow.startOver();
         } else {
             traverseBoard();
