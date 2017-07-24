@@ -42,7 +42,7 @@
         gameContainer.node.style.height = height;
     };
 
-    var handleInput = function (event) {
+    var handleLeftClick = function (event) {
         var btn = event.target;
         var x = parseInt(btn.getAttribute('data-row'));
         var y = parseInt(btn.getAttribute('data-column'));
@@ -61,15 +61,39 @@
         }
     };
 
+    var handleRightClick = function (event) {
+        event.preventDefault();
+        var btn = event.target;
+        var x = parseInt(btn.getAttribute('data-row'));
+        var y = parseInt(btn.getAttribute('data-column'));
+
+        if (board.current === undefined) {
+            board.current = board.getBoard();
+        }
+
+        if (!isFlagged(x, y)) {
+            btn.style.backgroundImage = "url('images/flag.png')";
+            btn.style.backgroundRepeat = 'no-repeat';
+            btn.style.backgroundSize = 'contain';
+            btn.style.backgroundPosition = 'center';
+            board.flagged[parseInt(board.convert2dIndexTo1d(x, y))] = 1;
+        } else {
+            btn.style.backgroundImage = '';
+            btn.style.backgroundColor = cell.backgroundColor;
+            board.flagged[parseInt(board.convert2dIndexTo1d(x, y))] = 0;
+        }
+
+        return false;
+    };
+
     var traverseBoard = function (x, y) {
 
     };
 
-    var disableButton = function (row, column) {
-        var selector = "button[data-row='" + row + "']" + "[data-column='" + column + "']";
-        var btn = document.querySelector(selector);
-        btn.setAttribute('disabled', true);
-        btn.style.backgroundColor = '#ccc';
+    var isFlagged = function (x, y) {
+        var selectedIndex = board.convert2dIndexTo1d(x, y);
+
+        return (board.flagged[selectedIndex] !== undefined && board.flagged[selectedIndex] === 1);
     };
 
     var incrementMineNumber = function (row, column) {
@@ -91,6 +115,8 @@
         rows: 9,
         columns: 9,
         mines: 10,
+        flagged: [],
+        opened: [],
         getBoard: function () {
             switch (game.config.getDifficulty()) {
                 case game.DIFFICULTY_BEGINNER:
@@ -124,7 +150,8 @@
                     btn.style.backgroundColor = cell.backgroundColor;
                     btn.setAttribute('data-row', i.toString());
                     btn.setAttribute('data-column', j.toString());
-                    btn.addEventListener('click', handleInput);
+                    btn.addEventListener('click', handleLeftClick);
+                    btn.addEventListener('contextmenu', handleRightClick, false);
 
                     td.appendChild(btn);
                     tr.appendChild(td);
@@ -136,8 +163,10 @@
             setBoardWidth(container.clientWidth);
             setBoardHeight(container.clientHeight);
             resizeGameContainer(getBoardWidth() + 2 * 105, getBoardHeight() + 2 * 105);
+        },
+        convert2dIndexTo1d: function (x, y) {
+            return x * game.board.current.columns + y;
         }
-
     };
 
     var beginnerBoard = Object.create(board);

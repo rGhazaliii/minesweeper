@@ -27,11 +27,11 @@
             }
         },
         isMine: function (x, y) {
-            var selectedIndex = convertMineIndex(x, y);
+            var selectedIndex = game.board.convert2dIndexTo1d(x, y);
             return (mine.minesIndex[selectedIndex]);
         },
         replaceMine: function (x, y) {
-            var selectedIndex = convertMineIndex(x, y);
+            var selectedIndex = game.board.convert2dIndexTo1d(x, y);
 
             do {
                 var newMineIndex = Math.floor(Math.random() * mine.limit);
@@ -43,9 +43,5 @@
         getMinesIndex: function () {
             return this.minesIndex;
         }
-    };
-
-    var convertMineIndex = function (x, y) {
-        return x * game.board.current.columns + y;
     };
 })();
