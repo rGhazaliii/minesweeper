@@ -251,14 +251,26 @@ label:hover {
 
 #game-scene #timer {
     float: left;
+    width: 40%;
 }
 
 #game-scene #flagged-mines {
     float: right;
+    width: 40%;
 }
 
 #game-scene input[name="remaining-mines"] {
     width: 32px;
+}
+
+#game-scene input[name="timer"] {
+    width: 64px;
+}
+
+#game-scene input[name="remaining-mines"],
+#game-scene input[name="timer"] {
+    background-color: #fff;
+    text-align: center;
 }
 
 .board-parent {

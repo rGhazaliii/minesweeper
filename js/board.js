@@ -5,6 +5,8 @@
 (function () {
     var game = this.minesweeperGame = this.minesweeperGame || {};
     var container = document.getElementById('board');
+    var timer = document.getElementById('timer').querySelector('input[name="timer"]');
+    var remainingMines = document.getElementById('flagged-mines').querySelector('input[name="remaining-mines"]');
 
     var gameContainer = {
         node: document.getElementById('game'),
@@ -52,13 +54,15 @@
         }
 
         var selectedMine = game.mine.isMine(x, y);
-        if (selectedMine) {
+        if (selectedMine && !isFlagged(x, y)) {
             alert('You lose!');
             game.board.resetSize();
             game.flow.startOver();
         } else {
             traverseBoard(x, y);
         }
+
+        game.timer.start();
     };
 
     var handleRightClick = function (event) {
@@ -160,12 +164,18 @@
                 container.appendChild(tr);
             }
 
+            remainingMines.value = board.mines;
+            timer.value = '0';
+
             setBoardWidth(container.clientWidth);
             setBoardHeight(container.clientHeight);
             resizeGameContainer(getBoardWidth() + 2 * 105, getBoardHeight() + 2 * 105);
         },
         convert2dIndexTo1d: function (x, y) {
             return x * game.board.current.columns + y;
+        },
+        updateTimerCount: function () {
+            timer.value = game.timer.count;
         }
     };
 

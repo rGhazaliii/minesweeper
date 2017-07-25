@@ -25,7 +25,7 @@
             game.startScene.hide();
             game.gameScene.visualize();
             game.gameScene.show();
-            //game.timer.restart();
+            game.timer.stop();
             game.gameScene.handleBackToStart();
         },
         showOptions: function () {
@@ -51,6 +51,7 @@
             game.helpScene.hide();
             game.aboutScene.hide();
             game.startScene.show();
+            game.timer.stop();
         },
         gameWin: function () {
             game.gameScene.hide();

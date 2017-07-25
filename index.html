@@ -33,13 +33,17 @@
         </div>
 
         <div id="board-info">
-            <div id="timer"></div>
+            <div id="timer">
+                <div class="margin-bottom-10px">
+                    <input type="text" name="timer" maxlength="5" disabled/>
+                    <img class="icon-32px-32px" src="images/timer.png">
+                </div>
+            </div>
+
             <div id="flagged-mines">
                 <div class="margin-bottom-10px">
-                    <label>
-                        <img class="icon-32px-32px" src="images/flag.png">
-                        <input class="" type="text" name="remaining-mines" maxlength="2" disabled/>
-                    </label>
+                    <input type="text" name="remaining-mines" maxlength="2" disabled/>
+                    <img class="icon-32px-32px" src="images/mine.png">
                 </div>
             </div>
         </div>
@@ -117,10 +121,10 @@
 <script src="js/browser.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/settings.js"></script>
+<script src="js/timer.js"></script>
 <script src="js/board.js"></script>
 <script src="js/mine.js"></script>
 <script src="js/scene.js"></script>
-<script src="js/timer.js"></script>
 <script src="js/game.js"></script>
 
 </body>
