@@ -289,7 +289,7 @@ label:hover {
 }
 
 #game table#board td {
-    font-size: 0px; /* Necessary for sizes under 26px */
+    font-size: 0; /* Necessary for sizes under 26px */
     padding: 0;
     border: 1px solid #2a3c6c;
 }

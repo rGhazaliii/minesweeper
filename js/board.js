@@ -36,6 +36,20 @@
         board.height = height;
     };
 
+    var setFlag = function (x, y, value) {
+        if (value) {
+            remainingMines.value--;
+        } else {
+            remainingMines.value++;
+        }
+
+        board.flagged[parseInt(board.convert2dIndexTo1d(x, y))] = value;
+    };
+
+    var setOpen = function (x, y, value) {
+        board.opened[parseInt(board.convert2dIndexTo1d(x, y))] = value;
+    };
+
     var resizeGameContainer = function (width, height) {
         width = width + 'px';
         gameContainer.node.style.width = width;
@@ -53,16 +67,91 @@
             board.current = board.getBoard();
         }
 
-        var selectedMine = game.mine.isMine(x, y);
-        if (selectedMine && !isFlagged(x, y)) {
-            alert('You lose!');
-            game.board.resetSize();
-            game.flow.startOver();
-        } else {
-            traverseBoard(x, y);
+        checkSelectedCell(x, y);
+        game.timer.start();
+    };
+
+    var checkSelectedCell = function (x, y) {
+        if (!isOpened(x, y) &&
+            ((x >= 0 && x < board.current.rows) &&
+            (y >= 0 && y < board.current.columns))
+        ) {
+            var selectedMine = game.mine.isMine(x, y);
+
+            if (selectedMine && !isFlagged(x, y)) {
+                showAllMines();
+                $.msgbox({
+                    type: 'alert',
+                    content: 'YOU LOSE',
+                    resize: false,
+                    onBeforeClose: function () {
+                        game.board.resetSize();
+                        game.flow.startOver();
+                    }
+                });
+            } else if (!isFlagged(x, y)) {
+                var neighbourMines = countNeighbourMines(x, y);
+
+                if (neighbourMines > 0) {
+                    setOpen(x, y, 1);
+                    console.log(neighbourMines);
+                    setMineNumber(x, y, neighbourMines);
+                    checkGameSuccess();
+                } else {
+                    setOpen(x, y, 1);
+                    disableCell(x, y);
+
+                    if (!isFlagged(x + 1, y) && !isOpened(x + 1, y)) {
+                        checkSelectedCell(x + 1, y);
+                    }
+                    if (!isFlagged(x - 1, y) && !isOpened(x - 1, y)) {
+                        checkSelectedCell(x - 1, y);
+                    }
+                    if (!isFlagged(x, y + 1) && !isOpened(x, y + 1)) {
+                        checkSelectedCell(x, y + 1);
+                    }
+                    if (!isFlagged(x, y - 1) && !isOpened(x, y - 1)) {
+                        checkSelectedCell(x, y - 1);
+                    }
+                    if (!isFlagged(x + 1, y + 1) && !isOpened(x + 1, y + 1)) {
+                        checkSelectedCell(x + 1, y + 1);
+                    }
+                    if (!isFlagged(x + 1, y - 1) && !isOpened(x + 1, y - 1)) {
+                        checkSelectedCell(x + 1, y - 1);
+                    }
+                    if (!isFlagged(x - 1, y - 1) && !isOpened(x - 1, y - 1)) {
+                        checkSelectedCell(x - 1, y - 1);
+                    }
+                    if (!isFlagged(x - 1, y + 1) && !isOpened(x - 1, y + 1)) {
+                        checkSelectedCell(x - 1, y + 1);
+                    }
+                }
+            }
+        }
+    };
+
+    var checkGameSuccess = function () {
+        var cellCntr = 0;
+
+        for (var i = 0; i < board.current.rows; i++) {
+            for (var j = 0; j < board.current.columns; j++) {
+                if (!game.mine.isMine(i, j) && isOpened(i, j)) {
+                    cellCntr++;
+                }
+            }
         }
 
-        game.timer.start();
+        if (cellCntr === (board.current.rows * board.current.columns) - board.current.mines) {
+            $.msgbox({
+                type: 'alert',
+                content: 'YOU WON',
+                resize: false,
+                onBeforeClose: function () {
+                    game.board.resetSize();
+                    game.flow.startOver();
+                }
+            });
+        }
     };
 
     var handleRightClick = function (event) {
@@ -75,23 +164,52 @@
             board.current = board.getBoard();
         }
 
-        if (!isFlagged(x, y)) {
-            btn.style.backgroundImage = "url('images/flag.png')";
-            btn.style.backgroundRepeat = 'no-repeat';
-            btn.style.backgroundSize = 'contain';
-            btn.style.backgroundPosition = 'center';
-            board.flagged[parseInt(board.convert2dIndexTo1d(x, y))] = 1;
-        } else {
-            btn.style.backgroundImage = '';
-            btn.style.backgroundColor = cell.backgroundColor;
-            board.flagged[parseInt(board.convert2dIndexTo1d(x, y))] = 0;
+        if (!isOpened(x, y)) {
+            if (!isFlagged(x, y)) {
+                btn.style.backgroundImage = "url('images/flag.png')";
+                btn.style.backgroundRepeat = 'no-repeat';
+                btn.style.backgroundSize = 'contain';
+                btn.style.backgroundPosition = 'center';
+                setFlag(x, y, 1);
+            } else {
+                btn.style.backgroundImage = '';
+                btn.style.backgroundColor = cell.backgroundColor;
+                setFlag(x, y, 0);
+            }
         }
 
         return false;
     };
 
-    var traverseBoard = function (x, y) {
+    var countNeighbourMines = function (x, y) {
+        var cntr = 0;
 
+        if (game.mine.isMine(x + 1, y)) {
+            cntr++;
+        }
+        if (game.mine.isMine(x - 1, y)) {
+            cntr++;
+        }
+        if (game.mine.isMine(x, y + 1)) {
+            cntr++;
+        }
+        if (game.mine.isMine(x, y - 1)) {
+            cntr++;
+        }
+        if (game.mine.isMine(x + 1, y + 1)) {
+            cntr++;
+        }
+        if (game.mine.isMine(x + 1, y - 1)) {
+            cntr++;
+        }
+        if (game.mine.isMine(x - 1, y + 1)) {
+            cntr++;
+        }
+        if (game.mine.isMine(x - 1, y - 1)) {
+            cntr++;
+        }
+
+        return cntr;
     };
 
     var isFlagged = function (x, y) {
@@ -100,14 +218,42 @@
         return (board.flagged[selectedIndex] !== undefined && board.flagged[selectedIndex] === 1);
     };
 
-    var incrementMineNumber = function (row, column) {
-        var selector = "button[data-row='" + row + "']" + "[data-column='" + column + "']";
-        var btn = document.querySelector(selector);
+    var isOpened = function (x, y) {
+        var selectedIndex = board.convert2dIndexTo1d(x, y);
 
-        if (btn.textContent === '' || btn.textContent === undefined) {
-            btn.textContent = 1;
-        } else {
-            btn.textContent = parseInt(btn.textContent) + 1;
+        return (board.opened[selectedIndex] !== undefined && board.opened[selectedIndex] === 1);
+    };
+
+    var setMineNumber = function (row, column, value) {
+        var btn = getButton(row, column);
+        btn.innerHTML = value;
+    };
+
+    var disableCell = function (x, y) {
+        var btn = getButton(x, y);
+        btn.setAttribute('disabled', 'true');
+        btn.style.backgroundColor = '#ccc';
+    };
+
+    var getButton = function (x, y) {
+        var selector = "button[data-row='" + x + "']" + "[data-column='" + y + "']";
+
+        return document.querySelector(selector);
+    };
+
+    var showAllMines = function () {
+        var btn;
+
+        for (var i = 0; i < board.current.rows; i++) {
+            for (var j = 0; j < board.current.columns; j++) {
+                if (game.mine.isMine(i, j)) {
+                    btn = getButton(i, j);
+                    btn.style.backgroundImage = "url('images/mine.png')";
+                    btn.style.backgroundRepeat = 'no-repeat';
+                    btn.style.backgroundSize = 'contain';
+                    btn.style.backgroundPosition = 'center';
+                }
+            }
         }
     };
 
@@ -159,6 +305,10 @@
 
                     td.appendChild(btn);
                     tr.appendChild(td);
+
+                    var index = board.convert2dIndexTo1d(i, j);
+                    board.flagged[index] = 0;
+                    board.opened[index] = 0;
                 }
 
                 container.appendChild(tr);
@@ -172,6 +322,10 @@
             resizeGameContainer(getBoardWidth() + 2 * 105, getBoardHeight() + 2 * 105);
         },
         convert2dIndexTo1d: function (x, y) {
+            if (board.current === undefined) {
+                board.current = board.getBoard();
+            }
+
             return x * game.board.current.columns + y;
         },
         updateTimerCount: function () {
