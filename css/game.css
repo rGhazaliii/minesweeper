@@ -297,12 +297,13 @@ label:hover {
 #game table#board button {
     padding: 0;
     transition: background-color 0.25s ease;
+    font-weight: bold;
 }
 
 #game table#board td:hover,
 #game table#board button:hover {
     cursor: pointer;
-    background-color: #ccc !important;
+    background-color: #74c7ff !important;
 }
 
 .scene {
