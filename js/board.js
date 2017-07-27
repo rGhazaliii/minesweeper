@@ -94,7 +94,6 @@
 
                 if (neighbourMines > 0) {
                     setOpen(x, y, 1);
-                    console.log(neighbourMines);
                     setMineNumber(x, y, neighbourMines);
                     checkGameSuccess();
                 } else {
@@ -281,15 +280,16 @@
             resizeGameContainer(gameContainer.defaultWidth, gameContainer.defaultHeight);
         },
         draw: function () {
+            var currentBoard = board.getBoard();
             container.removeAllChildren();
-            game.mine.setLimit(board.rows * board.columns);
-            game.mine.generateMines(board.mines);
+            game.mine.setLimit(currentBoard.rows * currentBoard.columns);
+            game.mine.generateMines(currentBoard.mines);
 
-            for (var i = 0; i < this.rows; i++) {
+            for (var i = 0; i < currentBoard.rows; i++) {
                 var tr = document.createElement('tr');
                 tr.style.height = cell.height;
 
-                for (var j = 0; j < this.columns; j++) {
+                for (var j = 0; j < currentBoard.columns; j++) {
                     var td = document.createElement('td');
                     td.style.width = cell.width;
                     td.style.height = cell.height;
@@ -306,15 +306,15 @@
                     td.appendChild(btn);
                     tr.appendChild(td);
 
-                    var index = board.convert2dIndexTo1d(i, j);
-                    board.flagged[index] = 0;
-                    board.opened[index] = 0;
+                    var index = currentBoard.convert2dIndexTo1d(i, j);
+                    currentBoard.flagged[index] = 0;
+                    currentBoard.opened[index] = 0;
                 }
 
                 container.appendChild(tr);
             }
 
-            remainingMines.value = board.mines;
+            remainingMines.value = currentBoard.mines;
             timer.value = '0';
 
             setBoardWidth(container.clientWidth);
