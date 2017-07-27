@@ -17,7 +17,19 @@
     var cell = {
         width: '20px',
         height: '20px',
-        backgroundColor: '#6993e6'
+        backgroundColor: '#74a0ea',
+        getColor: function (value) {
+            var colors = [
+                '',
+                '#4050be',
+                '#1d6905',
+                '#aa0507',
+                '#000380',
+                '#7a0102'
+            ];
+
+            return colors[value];
+        }
     };
 
     var getBoardWidth = function () {
@@ -84,6 +96,7 @@
                     type: 'alert',
                     content: 'YOU LOSE',
                     resize: false,
+                    transition: 'linear',
                     onBeforeClose: function () {
                         game.board.resetSize();
                         game.flow.startOver();
@@ -94,6 +107,7 @@
 
                 if (neighbourMines > 0) {
                     setOpen(x, y, 1);
+                    disableCell(x, y);
                     setMineNumber(x, y, neighbourMines);
                     checkGameSuccess();
                 } else {
@@ -141,15 +155,9 @@
         }
 
         if (cellCntr === (board.current.rows * board.current.columns) - board.current.mines) {
-            $.msgbox({
-                type: 'alert',
-                content: 'YOU WON',
-                resize: false,
-                onBeforeClose: function () {
-                    game.board.resetSize();
-                    game.flow.startOver();
-                }
-            });
+            alert('YOU WON');
+            game.board.resetSize();
+            game.flow.startOver();
         }
     };
 
@@ -183,28 +191,28 @@
     var countNeighbourMines = function (x, y) {
         var cntr = 0;
 
-        if (game.mine.isMine(x + 1, y)) {
+        if (x + 1 >= 0 && x + 1 < board.current.rows && game.mine.isMine(x + 1, y)) {
             cntr++;
         }
-        if (game.mine.isMine(x - 1, y)) {
+        if (x - 1 >= 0 && x - 1 < board.current.rows && game.mine.isMine(x - 1, y)) {
             cntr++;
         }
-        if (game.mine.isMine(x, y + 1)) {
+        if (y + 1 >= 0 && y + 1 < board.current.columns && game.mine.isMine(x, y + 1)) {
             cntr++;
         }
-        if (game.mine.isMine(x, y - 1)) {
+        if (y - 1 >= 0 && y - 1 < board.current.columns && game.mine.isMine(x, y - 1)) {
             cntr++;
         }
-        if (game.mine.isMine(x + 1, y + 1)) {
+        if ((x + 1 >= 0 && x + 1 < board.current.rows) && (y + 1 >= 0 && y + 1 < board.current.columns) && game.mine.isMine(x + 1, y + 1)) {
             cntr++;
         }
-        if (game.mine.isMine(x + 1, y - 1)) {
+        if ((x + 1 >= 0 && x + 1 < board.current.rows) && (y - 1 >= 0 && y - 1 < board.current.columns) && game.mine.isMine(x + 1, y - 1)) {
             cntr++;
         }
-        if (game.mine.isMine(x - 1, y + 1)) {
+        if ((x - 1 >= 0 && x - 1 < board.current.rows) && (y + 1 >= 0 && y + 1 < board.current.columns) && game.mine.isMine(x - 1, y + 1)) {
             cntr++;
         }
-        if (game.mine.isMine(x - 1, y - 1)) {
+        if ((x - 1 >= 0 && x - 1 < board.current.rows) && (y - 1 >= 0 && y - 1 < board.current.columns) && game.mine.isMine(x - 1, y - 1)) {
             cntr++;
         }
 
@@ -226,6 +234,7 @@
     var setMineNumber = function (row, column, value) {
         var btn = getButton(row, column);
         btn.innerHTML = value;
+        btn.style.color = cell.getColor(value);
     };
 
     var disableCell = function (x, y) {
