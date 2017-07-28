@@ -27,6 +27,9 @@
         tick: function () {
             this.count += 1;
             game.board.updateTimerCount();
+        },
+        getTime: function () {
+            return this.count;
         }
     }
 })();

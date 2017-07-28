@@ -92,16 +92,7 @@
 
             if (selectedMine && !isFlagged(x, y)) {
                 showAllMines();
-                $.msgbox({
-                    type: 'alert',
-                    content: 'YOU LOSE',
-                    resize: false,
-                    transition: 'linear',
-                    onBeforeClose: function () {
-                        game.board.resetSize();
-                        game.flow.startOver();
-                    }
-                });
+                showLostMessage();
             } else if (!isFlagged(x, y)) {
                 var neighbourMines = countNeighbourMines(x, y);
 
@@ -155,10 +146,52 @@
         }
 
         if (cellCntr === (board.current.rows * board.current.columns) - board.current.mines) {
-            alert('YOU WON');
-            game.board.resetSize();
-            game.flow.startOver();
+            showWonMessage();
         }
+    };
+
+    var showLostMessage = function () {
+        var timePassed = game.timer.getTime();
+        game.stats.updateStats(timePassed, game.STATUS_LOST);
+        var info = game.stats.getInfo(timePassed);
+
+        $.msgbox({
+            type: 'error',
+            content: game.MESSAGE_LOST + info,
+            resize: false,
+            width: 400,
+            height: 300,
+            title: 'Game Lost',
+            onBeforeClose: function () {
+                game.board.resetSize();
+                game.flow.startOver();
+            },
+            onOpen: function () {
+                game.timer.stop();
+            }
+        });
+    };
+
+    var showWonMessage = function () {
+        var timePassed = game.timer.getTime();
+        game.stats.updateStats(timePassed, game.STATUS_WON);
+        var info = game.stats.getInfo(timePassed);
+
+        $.msgbox({
+            type: 'success',
+            content: game.MESSAGE_WON + info,
+            resize: false,
+            width: 400,
+            height: 300,
+            title: 'Game Won',
+            onBeforeClose: function () {
+                game.board.resetSize();
+                game.flow.startOver();
+            },
+            onOpen: function () {
+                game.timer.stop();
+            }
+        });
     };
 
     var handleRightClick = function (event) {

@@ -52,6 +52,7 @@
             game.aboutScene.hide();
             game.startScene.show();
             game.timer.stop();
+            location.reload();
         },
         gameWin: function () {
             game.gameScene.hide();

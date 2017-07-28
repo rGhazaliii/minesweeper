@@ -13,7 +13,7 @@
         save: function (key, value) {
             if (checkCompatibility()) {
                 localStorage.setItem(key, value);
-                alert(key.capitalize() + ' saved as ' + value);
+                return true;
             } else {
                 alert('Saving is not supported!');
             }
