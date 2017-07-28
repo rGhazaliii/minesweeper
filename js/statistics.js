@@ -149,7 +149,7 @@
             var gamesWon = loadGamesWon();
 
             if (gamesWon !== null) {
-                for (var i = 0; gamesWon.length; i++) {
+                for (var i = 0; i < gamesWon.length; i++) {
                     if (gamesWon[i].level === stats.level) {
                         return gamesWon[i];
                     }
