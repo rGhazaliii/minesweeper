@@ -157,27 +157,27 @@
             }
         },
         updateGamesWon: function () {
-            if (stats.gamesWon === undefined) {
-                stats.gamesWon = this.getGamesWon();
-            }
-
+            debugger;
+            var gamesWon = loadGamesWon();
             var levelGamesWon = null;
-            for (var i = 0; i < stats.gamesWon.length; i++) {
-                if (gamesWon.hasOwnProperty(stats.gamesWon[i]) && stats.gamesWon[i].level === stats.level) {
-                    levelGamesWon = stats.gamesWon[i];
-                    break;
+
+            if (gamesWon !== null) {
+                for (var i = 0; i < gamesWon.length; i++) {
+                    if (gamesWon[i].level === stats.level) {
+                        levelGamesWon = gamesWon[i];
+                    }
                 }
             }
-
             if (levelGamesWon) {
                 levelGamesWon.number += 1;
-                stats.gamesWon[i] = levelGamesWon;
+                gamesWon[i - 1] = levelGamesWon;
             } else {
+                var gamesWon = [];
                 levelGamesWon = {'level': stats.level, 'number': 1};
-                stats.gamesWon.push(levelGamesWon);
+                gamesWon.push(levelGamesWon);
             }
 
-            game.storage.save(GAMES_WON_KEY, JSON.stringify(stats.gamesWon));
+            game.storage.save(GAMES_WON_KEY, JSON.stringify(gamesWon));
         }
     };
 
