@@ -81,13 +81,16 @@
         },
         setBestTimes: function () {
             stats.bestTimes = loadBestTimes();
+            if (stats.bestTimes === null) {
+                stats.bestTimes = [];
+            }
 
             var currentDate = new Date();
             var timestamp = currentDate.getTime();
             var obj = {'level': stats.level, 'duration': stats.duration, 'timestamp': timestamp};
 
             var levelBestTime = getLevelBestTime();
-            if (stats.bestTimes.length === 0) {
+            if (stats.bestTimes !== null && stats.bestTimes.length === 0) {
                 var arr = [];
                 arr.push(obj);
                 stats.bestTimes = arr;
@@ -248,9 +251,11 @@
     };
 
     var getLevelBestTime = function () {
-        for (var i = 0; i < stats.bestTimes.length; i++) {
-            if (stats.bestTimes[i].level == stats.level) {
-                return stats.bestTimes[i].duration;
+        if (stats.bestTimes !== null) {
+            for (var i = 0; i < stats.bestTimes.length; i++) {
+                if (stats.bestTimes[i].level == stats.level) {
+                    return stats.bestTimes[i].duration;
+                }
             }
         }
     };
