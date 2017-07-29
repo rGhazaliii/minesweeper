@@ -98,7 +98,7 @@
                 stats.bestTimes.push(obj);
             } else {
                 for (var i = 0; i < stats.bestTimes.length; i++) {
-                    if (stats.bestTimes[i].level == stats.level && parseInt(stats.duration) < parseInt(stats.bestTimes[i].duration)) {
+                    if (stats.bestTimes[i].level === stats.level && parseInt(stats.duration) < parseInt(stats.bestTimes[i].duration)) {
                         stats.bestTimes[i] = obj;
                         break;
                     }
@@ -140,7 +140,12 @@
                 levelGamesPlayed = {'level': stats.level, 'number': 1};
                 var arr = [];
                 arr.push(levelGamesPlayed);
-                stats.gamesPlayed = arr;
+
+                if (stats.gamesPlayed === null) {
+                    stats.gamesPlayed = arr;
+                } else {
+                    stats.gamesPlayed.push(levelGamesPlayed);
+                }
             }
 
             game.storage.save(GAMES_PLAYED_KEY, JSON.stringify(stats.gamesPlayed));
@@ -158,26 +163,34 @@
         },
         updateGamesWon: function () {
             debugger;
-            var gamesWon = loadGamesWon();
-            var levelGamesWon = null;
+            if (stats.gamesWon.length === 0) {
+                stats.gamesWon = loadGamesWon();
+            }
 
-            if (gamesWon !== null) {
-                for (var i = 0; i < gamesWon.length; i++) {
-                    if (gamesWon[i].level === stats.level) {
-                        levelGamesWon = gamesWon[i];
+            var levelGamesWon = null;
+            if (stats.gamesWon !== null) {
+                for (var i = 0; i < stats.gamesWon.length; i++) {
+                    if (stats.gamesWon[i].level === stats.level) {
+                        levelGamesWon = stats.gamesWon[i];
                     }
                 }
             }
             if (levelGamesWon) {
                 levelGamesWon.number += 1;
-                gamesWon[i - 1] = levelGamesWon;
+                stats.gamesWon[i - 1] = levelGamesWon;
             } else {
                 var gamesWon = [];
                 levelGamesWon = {'level': stats.level, 'number': 1};
                 gamesWon.push(levelGamesWon);
+
+                if (stats.gamesWon === null) {
+                    stats.gamesWon = gamesWon;
+                } else {
+                    stats.gamesWon.push(levelGamesWon);
+                }
             }
 
-            game.storage.save(GAMES_WON_KEY, JSON.stringify(gamesWon));
+            game.storage.save(GAMES_WON_KEY, JSON.stringify(stats.gamesWon));
         }
     };
 
@@ -253,7 +266,7 @@
     var getLevelBestTime = function () {
         if (stats.bestTimes !== null) {
             for (var i = 0; i < stats.bestTimes.length; i++) {
-                if (stats.bestTimes[i].level == stats.level) {
+                if (stats.bestTimes[i].level === stats.level) {
                     return stats.bestTimes[i].duration;
                 }
             }
