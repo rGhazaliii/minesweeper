@@ -80,6 +80,7 @@
         }
 
         checkSelectedCell(x, y);
+        board.firstClick = false;
         game.timer.start();
     };
 
@@ -90,7 +91,9 @@
         ) {
             var selectedMine = game.mine.isMine(x, y);
 
-            if (selectedMine && !isFlagged(x, y)) {
+            if (board.firstClick && selectedMine && !isFlagged(x, y)) {
+                game.mine.replaceMine(x, y);
+            } else if (selectedMine && !isFlagged(x, y)) {
                 showAllMines();
                 showLostMessage();
             } else if (!isFlagged(x, y)) {
@@ -308,6 +311,7 @@
         mines: 10,
         flagged: [],
         opened: [],
+        firstClick: true,
         getBoard: function () {
             switch (game.config.getDifficulty()) {
                 case game.DIFFICULTY_BEGINNER:

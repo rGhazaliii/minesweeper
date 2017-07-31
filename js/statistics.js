@@ -162,7 +162,6 @@
             }
         },
         updateGamesWon: function () {
-            debugger;
             if (stats.gamesWon.length === 0) {
                 stats.gamesWon = loadGamesWon();
             }
