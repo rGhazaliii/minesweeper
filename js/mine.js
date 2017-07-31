@@ -39,9 +39,6 @@
 
             mine.minesIndex[selectedIndex] = 0;
             mine.minesIndex[newMineIndex] = 1;
-        },
-        getMinesIndex: function () {
-            return this.minesIndex;
         }
     };
 })();

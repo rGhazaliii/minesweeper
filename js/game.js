@@ -53,17 +53,7 @@
             game.startScene.show();
             game.timer.stop();
             location.reload();
-        },
-        gameWin: function () {
-            game.gameScene.hide();
-            game.timer.stop();
-        },
-        gameOver: function () {
-            game.startScene.hide();
-            game.gameScene.hide();
-            game.gameoverScene.show();
-            game.timer.stop();
-        },
+        }
     };
 
     if (checkBrowser()) {
