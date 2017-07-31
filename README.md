@@ -1,2 +1,5 @@
 # Minesweeper
-Minesweeper game in pure javascript developed for fun and learning, if you liked, pull
+Minesweeper game in pure javascript
+
+
+![](screenshot.png?raw=true)
