@@ -12,6 +12,16 @@ body {
     background: #fff center center repeat-y;
 }
 
+::selection {
+    background: #f3473e;
+    color: #fff;
+}
+
+::-moz-selection {
+    background: #f3473e;
+    color: #fff;
+}
+
 p {
     margin: 0;
     padding: 1em 0;
