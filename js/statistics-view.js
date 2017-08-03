@@ -25,7 +25,7 @@
         var otp = '';
         var bestTime = game.beginnerStats.loadBestTimes() !== undefined ? game.beginnerStats.loadBestTimes() : '';
         var gamesWon = game.beginnerStats.loadGamesWon() !== undefined ? game.beginnerStats.loadGamesWon() : '';
-        var gamesPlayed = game.beginnerStats.loadGamesWon() !== undefined ? game.beginnerStats.loadGamesPlayed() : '';
+        var gamesPlayed = game.beginnerStats.loadGamesPlayed() !== undefined ? game.beginnerStats.loadGamesPlayed() : '';
         var duration = (bestTime.hasOwnProperty('duration')) ? bestTime.duration : '';
         var date = (bestTime.hasOwnProperty('timestamp')) ? ' (' + convertTimestamp(bestTime.timestamp) + ') ' : '';
 
@@ -42,7 +42,7 @@
         var otp = '';
         var bestTime = game.intermediateStats.loadBestTimes() !== undefined ? game.intermediateStats.loadBestTimes() : '';
         var gamesWon = game.intermediateStats.loadGamesWon() !== undefined ? game.intermediateStats.loadGamesWon() : '';
-        var gamesPlayed = game.intermediateStats.loadGamesWon() !== undefined ? game.intermediateStats.loadGamesPlayed() : '';
+        var gamesPlayed = game.intermediateStats.loadGamesPlayed() !== undefined ? game.intermediateStats.loadGamesPlayed() : '';
         var duration = (bestTime.hasOwnProperty('duration')) ? bestTime.duration : '';
         var date = (bestTime.hasOwnProperty('timestamp')) ? ' (' + convertTimestamp(bestTime.timestamp) + ') ' : '';
 
@@ -59,7 +59,7 @@
         var otp = '';
         var bestTime = game.advancedStats.loadBestTimes() !== undefined ? game.advancedStats.loadBestTimes() : '';
         var gamesWon = game.advancedStats.loadGamesWon() !== undefined ? game.advancedStats.loadGamesWon() : '';
-        var gamesPlayed = game.advancedStats.loadGamesWon() !== undefined ? game.advancedStats.loadGamesPlayed() : '';
+        var gamesPlayed = game.advancedStats.loadGamesPlayed() !== undefined ? game.advancedStats.loadGamesPlayed() : '';
         var duration = (bestTime.hasOwnProperty('duration')) ? bestTime.duration : '';
         var date = (bestTime.hasOwnProperty('timestamp')) ? ' (' + convertTimestamp(bestTime.timestamp) + ') ' : '';
 
