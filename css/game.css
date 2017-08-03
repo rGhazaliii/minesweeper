@@ -54,6 +54,10 @@ label:hover {
     height: 32px !important;
 }
 
+.font-bold {
+    font-weight: bold !important;
+}
+
 .font-15px {
     font-size: 15px !important;
 }
@@ -363,6 +367,15 @@ label:hover {
 #options-scene {
     background: url("../images/options_bg.jpg") no-repeat;
     background-size: cover;
+}
+
+#stats-scene {
+    background: url("../images/stats_bg.jpg") no-repeat;
+    background-size: cover;
+}
+
+#stats-scene #back-to-start {
+    margin-top: 30px;
 }
 
 #help-scene {

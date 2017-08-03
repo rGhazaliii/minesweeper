@@ -78,6 +78,15 @@
         }
     };
 
+    var statsScene = game.statsScene = Object.create(scene);
+    statsScene.node = document.getElementById('stats-scene');
+    statsScene.handleInput = function () {
+        document.getElementById('stats-btn').onclick = function () {
+            statsScene.node.appendChild(scene.backToStartBtn);
+            game.flow.showStats();
+        };
+    };
+
     var helpScene = game.helpScene = Object.create(scene);
     helpScene.node = document.getElementById('help-scene');
     helpScene.handleInput = function () {
@@ -94,17 +103,5 @@
             aboutScene.node.appendChild(scene.backToStartBtn);
             game.flow.showAbout();
         };
-    };
-
-    var winScene = game.winScene = Object.create(scene);
-    winScene.node = document.getElementById('win-scene');
-    winScene.handleInput = function () {
-
-    };
-
-    var gameoverScene = game.gameoverScene = Object.create(scene);
-    gameoverScene.node = document.getElementById('gameover-scene');
-    gameoverScene.handleInput = function () {
-
     };
 })();

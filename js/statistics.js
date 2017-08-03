@@ -24,7 +24,7 @@
                     return advancedStats;
             }
         },
-        getInfo: function (duration) {
+        getInfo: function () {
             var bestTimes = this.getBestTimes();
             var bestTime = '';
             if (bestTimes.length !== 0) {
@@ -44,10 +44,7 @@
                 won = gamesWon.number;
             }
 
-            return '<br/><br/>Time: ' + duration +
-                ' seconds<br/>Best time: ' + bestTime +
-                ' <br/>Games played: ' + played +
-                '<br/>Games won: ' + won;
+            return game.statsView.getInfo(bestTime, played, won);
         },
         updateStats: function (duration, gameStatus) {
             stats.duration = duration;
@@ -66,7 +63,7 @@
 
         },
         getBestTimes: function () {
-            var bestTimes = loadBestTimes();
+            var bestTimes = stats.loadBestTimes();
             var result = [];
 
             if (bestTimes !== null) {
@@ -80,7 +77,7 @@
             return result;
         },
         setBestTimes: function () {
-            stats.bestTimes = loadBestTimes();
+            stats.bestTimes = stats.loadBestTimes();
             if (stats.bestTimes === null) {
                 stats.bestTimes = [];
             }
@@ -108,7 +105,7 @@
             game.storage.save(BEST_TIMES_KEY, JSON.stringify(stats.bestTimes));
         },
         getGamesPlayed: function () {
-            var gamesPlayed = loadGamesPlayed();
+            var gamesPlayed = stats.loadGamesPlayed();
 
             if (gamesPlayed !== null) {
                 for (var i = 0; gamesPlayed.length; i++) {
@@ -120,7 +117,7 @@
         },
         updateGamesPlayed: function () {
             if (stats.gamesPlayed.length === 0) {
-                stats.gamesPlayed = loadGamesPlayed();
+                stats.gamesPlayed = stats.loadGamesPlayed();
             }
 
             var levelGamesPlayed = null;
@@ -151,7 +148,7 @@
             game.storage.save(GAMES_PLAYED_KEY, JSON.stringify(stats.gamesPlayed));
         },
         getGamesWon: function () {
-            var gamesWon = loadGamesWon();
+            var gamesWon = stats.loadGamesWon();
 
             if (gamesWon !== null) {
                 for (var i = 0; i < gamesWon.length; i++) {
@@ -163,7 +160,7 @@
         },
         updateGamesWon: function () {
             if (stats.gamesWon.length === 0) {
-                stats.gamesWon = loadGamesWon();
+                stats.gamesWon = stats.loadGamesWon();
             }
 
             var levelGamesWon = null;
@@ -190,10 +187,23 @@
             }
 
             game.storage.save(GAMES_WON_KEY, JSON.stringify(stats.gamesWon));
+        },
+        loadGamesPlayed: function () {
+            var loaded = game.storage.load(GAMES_PLAYED_KEY);
+            return JSON.parse(loaded);
+        },
+
+        loadGamesWon: function () {
+            var loaded = game.storage.load(GAMES_WON_KEY);
+            return JSON.parse(loaded);
+        },
+        loadBestTimes: function () {
+            var loaded = game.storage.load(BEST_TIMES_KEY);
+            return JSON.parse(loaded);
         }
     };
 
-    var beginnerStats = Object.create(stats);
+    var beginnerStats = game.beginnerStats = Object.create(stats);
     beginnerStats.level = 'Beginner';
     beginnerStats.getBestTimes = function () {
         stats.level = beginnerStats.level;
@@ -215,8 +225,41 @@
         stats.level = beginnerStats.level;
         Object.getPrototypeOf(this).updateGamesWon.call(this);
     };
+    beginnerStats.loadGamesPlayed = function () {
+        var loaded = JSON.parse(game.storage.load(GAMES_PLAYED_KEY));
 
-    var intermediateStats = Object.create(stats);
+        if (loaded !== null) {
+            for (var i = 0; i < loaded.length; i++) {
+                if (loaded[i].level === beginnerStats.level) {
+                    return loaded[i].number;
+                }
+            }
+        }
+    };
+    beginnerStats.loadGamesWon = function () {
+        var loaded = JSON.parse(game.storage.load(GAMES_WON_KEY));
+
+        if (loaded !== null) {
+            for (var i = 0; i < loaded.length; i++) {
+                if (loaded[i].level === beginnerStats.level) {
+                    return loaded[i].number;
+                }
+            }
+        }
+    };
+    beginnerStats.loadBestTimes = function () {
+        var loaded = JSON.parse(game.storage.load(BEST_TIMES_KEY));
+
+        if (loaded !== null) {
+            for (var i = 0; i < loaded.length; i++) {
+                if (loaded[i].level === beginnerStats.level) {
+                    return loaded[i];
+                }
+            }
+        }
+    };
+
+    var intermediateStats = game.intermediateStats = Object.create(stats);
     intermediateStats.level = 'Intermediate';
     intermediateStats.getBestTimes = function () {
         stats.level = intermediateStats.level;
@@ -238,8 +281,41 @@
         stats.level = intermediateStats.level;
         Object.getPrototypeOf(this).updateGamesWon.call(this);
     };
+    intermediateStats.loadGamesPlayed = function () {
+        var loaded = JSON.parse(game.storage.load(GAMES_PLAYED_KEY));
 
-    var advancedStats = Object.create(stats);
+        if (loaded !== null) {
+            for (var i = 0; i < loaded.length; i++) {
+                if (loaded[i].level === intermediateStats.level) {
+                    return loaded[i].number;
+                }
+            }
+        }
+    };
+    intermediateStats.loadGamesWon = function () {
+        var loaded = JSON.parse(game.storage.load(GAMES_WON_KEY));
+
+        if (loaded !== null) {
+            for (var i = 0; i < loaded.length; i++) {
+                if (loaded[i].level === intermediateStats.level) {
+                    return loaded[i].number;
+                }
+            }
+        }
+    };
+    intermediateStats.loadBestTimes = function () {
+        var loaded = JSON.parse(game.storage.load(BEST_TIMES_KEY));
+
+        if (loaded !== null) {
+            for (var i = 0; i < loaded.length; i++) {
+                if (loaded[i].level === intermediateStats.level) {
+                    return loaded[i];
+                }
+            }
+        }
+    };
+
+    var advancedStats = game.advancedStats = Object.create(stats);
     advancedStats.level = 'Advanced';
     advancedStats.getBestTimes = function () {
         stats.level = advancedStats.level;
@@ -261,6 +337,39 @@
         stats.level = advancedStats.level;
         Object.getPrototypeOf(this).updateGamesWon.call(this);
     };
+    advancedStats.loadGamesPlayed = function () {
+        var loaded = JSON.parse(game.storage.load(GAMES_PLAYED_KEY));
+
+        if (loaded !== null) {
+            for (var i = 0; i < loaded.length; i++) {
+                if (loaded[i].level === advancedStats.level) {
+                    return loaded[i].number;
+                }
+            }
+        }
+    };
+    advancedStats.loadGamesWon = function () {
+        var loaded = JSON.parse(game.storage.load(GAMES_WON_KEY));
+
+        if (loaded !== null) {
+            for (var i = 0; i < loaded.length; i++) {
+                if (loaded[i].level === advancedStats.level) {
+                    return loaded[i].number;
+                }
+            }
+        }
+    };
+    advancedStats.loadBestTimes = function () {
+        var loaded = JSON.parse(game.storage.load(BEST_TIMES_KEY));
+
+        if (loaded !== null) {
+            for (var i = 0; i < loaded.length; i++) {
+                if (loaded[i].level === advancedStats.level) {
+                    return loaded[i];
+                }
+            }
+        }
+    };
 
     var getLevelBestTime = function () {
         if (stats.bestTimes !== null) {
@@ -280,20 +389,5 @@
         }
 
         return 0;
-    };
-
-    var loadGamesPlayed = function () {
-        var loaded = game.storage.load(GAMES_PLAYED_KEY);
-        return JSON.parse(loaded);
-    };
-
-    var loadGamesWon = function () {
-        var loaded = game.storage.load(GAMES_WON_KEY);
-        return JSON.parse(loaded);
-    };
-
-    var loadBestTimes = function () {
-        var loaded = game.storage.load(BEST_TIMES_KEY);
-        return JSON.parse(loaded);
     };
 })();

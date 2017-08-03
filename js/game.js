@@ -9,10 +9,9 @@
         game.startScene.handleInput();
         game.gameScene.handleInput();
         game.optionsScene.handleInput();
+        game.statsScene.handleInput();
         game.helpScene.handleInput();
         game.aboutScene.handleInput();
-        game.winScene.handleInput();
-        game.gameoverScene.handleInput();
     };
 
     var checkBrowser = function () {
@@ -33,6 +32,12 @@
             game.optionsScene.show();
             game.optionsScene.handleBackToStart();
         },
+        showStats: function () {
+            game.startScene.hide();
+            game.statsView.visualize();
+            game.statsScene.show();
+            game.statsScene.handleBackToStart();
+        },
         showHelp: function () {
             game.startScene.hide();
             game.helpScene.show();
@@ -45,7 +50,6 @@
         },
         startOver: function () {
             game.startScene.hide();
-            game.gameoverScene.hide();
             game.gameScene.hide();
             game.optionsScene.hide();
             game.helpScene.hide();

@@ -156,7 +156,8 @@
     var showLostMessage = function () {
         var timePassed = game.timer.getTime();
         game.stats.updateStats(timePassed, game.STATUS_LOST);
-        var info = game.stats.getInfo(timePassed);
+        game.stats.duration = timePassed;
+        var info = game.stats.getInfo();
 
         $.msgbox({
             type: 'error',
@@ -178,7 +179,8 @@
     var showWonMessage = function () {
         var timePassed = game.timer.getTime();
         game.stats.updateStats(timePassed, game.STATUS_WON);
-        var info = game.stats.getInfo(timePassed);
+        game.stats.duration = timePassed;
+        var info = game.stats.getInfo();
 
         $.msgbox({
             type: 'success',
