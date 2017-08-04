@@ -72,7 +72,10 @@
 
     var convertTimestamp = function (timestamp) {
         var date = new Date(timestamp);
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDay();
 
-        return date.getFullYear() + '/' + date.getMonth() + '/' + date.getDay();
+        return year + '/' + month + '/' + day;
     };
 })();
