@@ -96,7 +96,9 @@
             } else if (selectedMine && !isFlagged(x, y)) {
                 showAllMines();
                 showLostMessage();
-            } else if (!isFlagged(x, y)) {
+            }
+
+            if (!isFlagged(x, y)) {
                 var neighbourMines = countNeighbourMines(x, y);
 
                 if (neighbourMines > 0) {
