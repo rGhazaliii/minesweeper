@@ -168,12 +168,14 @@
                 for (var i = 0; i < stats.gamesWon.length; i++) {
                     if (stats.gamesWon[i].level === stats.level) {
                         levelGamesWon = stats.gamesWon[i];
+                        break;
                     }
                 }
             }
+
             if (levelGamesWon) {
                 levelGamesWon.number += 1;
-                stats.gamesWon[i - 1] = levelGamesWon;
+                stats.gamesWon[i] = levelGamesWon;
             } else {
                 var gamesWon = [];
                 levelGamesWon = {'level': stats.level, 'number': 1};
