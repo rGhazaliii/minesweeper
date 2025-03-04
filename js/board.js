@@ -87,7 +87,7 @@
     var checkSelectedCell = function (x, y) {
         if (!isOpened(x, y) &&
             ((x >= 0 && x < board.current.rows) &&
-            (y >= 0 && y < board.current.columns))
+                (y >= 0 && y < board.current.columns))
         ) {
             var selectedMine = game.mine.isMine(x, y);
 
@@ -167,7 +167,7 @@
             resize: false,
             width: 400,
             height: 300,
-            title: 'Game Lost',
+            title: LOCALIZATION_STRINGS.GAME_LOST_TITLE,
             onBeforeClose: function () {
                 game.board.resetSize();
                 game.flow.startOver();
@@ -190,7 +190,7 @@
             resize: false,
             width: 400,
             height: 300,
-            title: 'Game Won',
+            title: LOCALIZATION_STRINGS.GAME_WON_TITLE,
             onBeforeClose: function () {
                 game.board.resetSize();
                 game.flow.startOver();

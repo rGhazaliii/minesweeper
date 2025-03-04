@@ -63,6 +63,6 @@
     if (checkBrowser()) {
         init();
     } else {
-        alert('Your browser is not compatible, please UPGRADE!');
+        alert(LOCALIZATION_STRINGS.BROWSER_INCOMPATIBLE_MESSAGE);
     }
 })();

@@ -1,0 +1,26 @@
+document.body.dir = MINESWEEPER_DEFAULT_DIR;
+
+document.getElementById('game-name').innerText = LOCALIZATION_STRINGS.GAME_NAME;
+document.getElementById('newgame-btn').innerText = LOCALIZATION_STRINGS.NEW_GAME;
+document.getElementById('options-btn').innerText = LOCALIZATION_STRINGS.OPTIONS;
+document.getElementById('stats-btn').innerText = LOCALIZATION_STRINGS.STATISTICS;
+document.getElementById('help-btn').innerText = LOCALIZATION_STRINGS.HELP;
+document.getElementById('about-btn').innerText = LOCALIZATION_STRINGS.ABOUT;
+document.getElementById('difficulty-header').innerText = LOCALIZATION_STRINGS.DIFFICULTY;
+document.getElementById('difficulty-beginner').innerText = LOCALIZATION_STRINGS.DIFFICULTY_LEVELS.beginner;
+document.getElementById('difficulty-beginner-hint').innerText = LOCALIZATION_STRINGS.DIFFICULTY_LEVELS.BEGINNER_HINT;
+document.getElementById('difficulty-intermediate').innerText = LOCALIZATION_STRINGS.DIFFICULTY_LEVELS.intermediate;
+document.getElementById('difficulty-intermediate-hint').innerText = LOCALIZATION_STRINGS.DIFFICULTY_LEVELS.INTERMEDIATE_HINT;
+document.getElementById('difficulty-advanced').innerText = LOCALIZATION_STRINGS.DIFFICULTY_LEVELS.advanced;
+document.getElementById('difficulty-advanced-hint').innerText = LOCALIZATION_STRINGS.DIFFICULTY_LEVELS.ADVANCED_HINT;
+document.getElementById('difficulty-header-beginner').innerText = LOCALIZATION_STRINGS.DIFFICULTY_LEVELS.beginner;
+document.getElementById('difficulty-header-intermediate').innerText = LOCALIZATION_STRINGS.DIFFICULTY_LEVELS.intermediate;
+document.getElementById('difficulty-header-advanced').innerText = LOCALIZATION_STRINGS.DIFFICULTY_LEVELS.advanced;
+document.getElementById('help-content').innerText = LOCALIZATION_STRINGS.HELP_CONTENT;
+document.getElementById('developed-by').innerText = LOCALIZATION_STRINGS.DEVELOPED_BY_CONTENT;
+document.getElementById('for-fun').innerText = LOCALIZATION_STRINGS.FOR_FUN_CONTENT;
+document.getElementById('won-message').innerText = LOCALIZATION_STRINGS.WON_MESSAGE;
+document.getElementById('year-message').innerText = LOCALIZATION_STRINGS.YEAR_MESSAGE;
+document.getElementById('back-to-start').innerText = LOCALIZATION_STRINGS.MAIN_MENU;
+document.getElementById('save-btn').innerText = LOCALIZATION_STRINGS.SAVE;
+document.getElementById('save-hint').innerText = LOCALIZATION_STRINGS.SAVE_HINT;

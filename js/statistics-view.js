@@ -7,10 +7,10 @@
 
     var statsView = game.statsView = {
         getInfo: function (bestTime, played, won) {
-            return '<br/><br/>Time: ' + game.stats.duration +
-                ' seconds<br/>Best time: ' + bestTime +
-                ' <br/>Games played: ' + played +
-                '<br/>Games won: ' + won;
+            return '<br/><br/>' + LOCALIZATION_STRINGS.TIME + ': ' + game.stats.duration +
+                ' ' + LOCALIZATION_STRINGS.SECONDS + '<br/>' + LOCALIZATION_STRINGS.BEST_TIME + ': ' + bestTime +
+                ' <br/>' + LOCALIZATION_STRINGS.GAMES_PLAYED + ': ' + played +
+                '<br/>' + LOCALIZATION_STRINGS.GAMES_WON + ': ' + won;
         },
         visualize: function () {
             beginnerView.node.innerHTML = beginnerView.getLevelInfo();

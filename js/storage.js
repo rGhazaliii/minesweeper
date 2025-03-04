@@ -6,7 +6,7 @@
     var game = this.minesweeperGame = this.minesweeperGame || {};
 
     var checkCompatibility = function () {
-        return (typeof(Storage) !== 'undefined');
+        return (typeof (Storage) !== 'undefined');
     };
 
     game.storage = {
@@ -15,14 +15,14 @@
                 localStorage.setItem(key, value);
                 return true;
             } else {
-                alert('Saving is not supported!');
+                alert(LOCALIZATION_STRINGS.SAVING_NOT_SUPPORTED);
             }
         },
         load: function (key) {
             if (checkCompatibility()) {
                 return localStorage.getItem(key);
             } else {
-                alert('Loading is not supported!');
+                alert(LOCALIZATION_STRINGS.LOADING_NOT_SUPPORTED);
             }
         }
     };

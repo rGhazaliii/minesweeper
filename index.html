@@ -11,22 +11,25 @@
     <link rel="stylesheet" href="css/game.css">
     <link rel="stylesheet" href="css/libs/jquery.msgbox.css">
     <noscript>Your browser does not support JavaScript!</noscript>
+
+    <script src="js/global-constants.js"></script>
+    <script src="js/strings.js"></script>
 </head>
 
 <body>
 <header>
     <div class="row">
-        <h1 class="text-center color-f3473e">Minesweeper</h1>
+        <h1 id="game-name" class="text-center color-f3473e"></h1>
     </div>
 </header>
 
 <section id="game">
     <div id="start-scene" class="scene padding-top-20px">
-        <a href="#" id="newgame-btn" class="button">New Game</a>
-        <a href="#" id="options-btn" class="button">Options</a>
-        <a href="#" id="stats-btn" class="button">Statistics</a>
-        <a href="#" id="help-btn" class="button">Help</a>
-        <a href="#" id="about-btn" class="button">About</a>
+        <a href="#" id="newgame-btn" class="button"></a>
+        <a href="#" id="options-btn" class="button"></a>
+        <a href="#" id="stats-btn" class="button"></a>
+        <a href="#" id="help-btn" class="button"></a>
+        <a href="#" id="about-btn" class="button"></a>
     </div>
 
     <div id="game-scene" class="scene out">
@@ -40,7 +43,7 @@
                     <label>
                         <input type="text" name="timer" maxlength="5" disabled/>
                     </label>
-                    <img class="icon-32px-32px" src="images/timer.png">
+                    <img class="icon-32px-32px" src="images/timer.png" alt="">
                 </div>
             </div>
 
@@ -49,7 +52,7 @@
                     <label>
                         <input type="text" name="remaining-mines" maxlength="2" disabled/>
                     </label>
-                    <img class="icon-32px-32px" src="images/mine.png">
+                    <img class="icon-32px-32px" src="images/mine.png" alt="">
                 </div>
             </div>
         </div>
@@ -57,26 +60,26 @@
 
     <div id="options-scene" class="scene out">
         <div id="difficulty" class="padding-20px color-fff font-25px">
-            <h1 class="text-center color-fff">Difficulty</h1>
+            <h1 id="difficulty-header" class="text-center color-fff"></h1>
 
             <div class="margin-bottom-10px">
                 <label>
-                    <input type="radio" name="difficulty" value="beginner" checked>
-                    <span>Beginner - 10 Mines - 9 * 9 Grid</span>
+                    <input id="difficulty-beginner" type="radio" name="difficulty" value="beginner" checked>
+                    <span id="difficulty-beginner-hint"></span>
                 </label>
             </div>
 
             <div class="margin-bottom-10px">
                 <label>
-                    <input type="radio" name="difficulty" value="intermediate">
-                    <span>Intermediate - 40 Mines - 16 * 16 Grid</span>
+                    <input id="difficulty-intermediate" type="radio" name="difficulty" value="intermediate">
+                    <span id="difficulty-intermediate-hint"></span>
                 </label>
             </div>
 
             <div class="margin-bottom-10px">
                 <label>
-                    <input type="radio" name="difficulty" value="advanced">
-                    <span>Advanced - 99 Mines - 16 * 30 Grid</span>
+                    <input id="difficulty-advanced" type="radio" name="difficulty" value="advanced">
+                    <span id="difficulty-advanced-hint"></span>
                 </label>
             </div>
         </div>
@@ -84,38 +87,36 @@
 
     <div id="stats-scene" class="scene out">
         <div>
-            <h1 class="text-center">Beginner</h1>
+            <h1 id="difficulty-header-beginner" class="text-center"></h1>
             <div id="stats-beginner" class="font-16px"></div>
         </div>
 
         <div>
-            <h1 class="text-center">Intermediate</h1>
+            <h1 id="difficulty-header-intermediate" class="text-center"></h1>
             <div id="stats-intermediate" class="font-16px"></div>
         </div>
 
         <div>
-            <h1 class="text-center">Advanced</h1>
+            <h1 id="difficulty-header-advanced" class="text-center"></h1>
             <div id="stats-advanced" class="font-16px"></div>
         </div>
     </div>
 
     <div id="help-scene" class="scene out">
-        <div class="padding-20px color-fff font-25px">
-            Minesweeper is a deceptively simple test of memory and reasoning and one of the most popular Windows games
-            of all time. The goal is to find the empty squares and avoid the mines. Sounds easy, right?
-        </div>
+        <div id="help-content" class="padding-20px color-fff font-25px"></div>
     </div>
 
     <div id="about-scene" class="scene out">
-        <div class="padding-20px color-fff font-25px">
-            Minesweeper HTML5 game developed by <a target="_blank" href="#"><span
-                class="font-16px color-f3473e">r.Ghazali</span></a>
-            for fun.
+        <div id="about-content" class="padding-20px color-fff font-25px">
+            <span id="developed-by"></span>
+            &nbsp;
+            <a target="_blank" href="#"><span class="font-16px color-f3473e">r.Ghazali</span></a>
+            <span id="for-fun"></span>.
         </div>
     </div>
 
     <div id="win-scene" class="scene out">
-        <h1>You Won The Game.</h1>
+        <h1 id="won-message"></h1>
     </div>
 
     <div id="gameover-scene" class="scene out">
@@ -125,18 +126,16 @@
 
 <footer>
     <div class="row">
-        <p class="text-center color-f3473e">
-            Created with &hearts; in 2017
-        </p>
+        <p id="year-message" class="text-center color-f3473e"></p>
     </div>
 </footer>
 
 <div class="templates scene out">
-    <a href="#" id="back-to-start" class="button">Main Menu</a>
+    <a href="#" id="back-to-start" class="button"></a>
 
     <div class="tooltip-bottom" id="save-block-btn">
-        <a href="#" id="save-btn" class="button">Save</a>
-        <span class="tooltip-text">Your preferences will be reloaded even after you close your browser</span>
+        <a href="#" id="save-btn" class="button"></a>
+        <span id="save-hint" class="tooltip-text"></span>
     </div>
 </div>
 
@@ -153,6 +152,7 @@
 <script src="js/mine.js"></script>
 <script src="js/scene.js"></script>
 <script src="js/game.js"></script>
+<script src="js/translate-pages.js"></script>
 
 </body>
 </html>

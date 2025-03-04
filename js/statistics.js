@@ -29,7 +29,7 @@
             var bestTime = '';
             if (bestTimes.length !== 0) {
                 bestTimes.sort(compare);
-                bestTime = bestTimes[0].duration + ' seconds';
+                bestTime = bestTimes[0].duration + ' ' + LOCALIZATION_STRINGS.SECONDS;
             }
 
             var gamesPlayed = this.getGamesPlayed();
@@ -192,15 +192,18 @@
         },
         loadGamesPlayed: function () {
             var loaded = game.storage.load(GAMES_PLAYED_KEY);
+
             return JSON.parse(loaded);
         },
 
         loadGamesWon: function () {
             var loaded = game.storage.load(GAMES_WON_KEY);
+
             return JSON.parse(loaded);
         },
         loadBestTimes: function () {
             var loaded = game.storage.load(BEST_TIMES_KEY);
+
             return JSON.parse(loaded);
         }
     };
