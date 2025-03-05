@@ -5,6 +5,7 @@
 (function () {
     var game = this.minesweeperGame = this.minesweeperGame || {};
     var DIFFICULTY_KEY = 'difficulty';
+    var LOCALE_KEY = 'locale';
 
     game.DIFFICULTY_BEGINNER = 'beginner';
     game.DIFFICULTY_INTERMEDIATE = 'intermediate';
@@ -16,6 +17,7 @@
 
     game.config = {
         difficulty: 'beginner',
+        locale: MINESWEEPER_DEFAULT_LOCALE,
         getDifficulty: function () {
             var loaded = game.storage.load(DIFFICULTY_KEY);
 
@@ -25,16 +27,18 @@
             var saveResult = game.storage.save(DIFFICULTY_KEY, value);
             this.difficulty = value;
 
-            if (saveResult) {
-                alert(
-                    LOCALIZATION_STRINGS[DIFFICULTY_KEY.toUpperCase()] +
-                    ' ' +
-                    LOCALIZATION_STRINGS.SAVED_AS +
-                    ' ' +
-                    LOCALIZATION_STRINGS.DIFFICULTY_LEVELS[value] +
-                    '.'
-                );
-            }
+            return saveResult;
+        },
+        getLocale: function () {
+            var loaded = game.storage.load(LOCALE_KEY);
+
+            return (loaded !== 'undefined' && loaded) ? loaded : this.locale;
+        },
+        setLocale: function (value) {
+            var saveResult = game.storage.save(LOCALE_KEY, value);
+            this.locale = value;
+
+            return saveResult;
         }
     };
 })();

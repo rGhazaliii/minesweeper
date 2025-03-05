@@ -367,6 +367,7 @@ label:hover {
 #options-scene {
     background: url("../images/options_bg.jpg") no-repeat;
     background-size: cover;
+    overflow-y: scroll
 }
 
 #stats-scene {

@@ -28,6 +28,7 @@
         },
         isMine: function (x, y) {
             var selectedIndex = game.board.convert2dIndexTo1d(x, y);
+
             return (mine.minesIndex[selectedIndex]);
         },
         replaceMine: function (x, y) {

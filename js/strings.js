@@ -40,6 +40,14 @@ if (MINESWEEPER_DEFAULT_LOCALE === 'en') {
         GAMES_WON: 'Games won',
         SAVING_NOT_SUPPORTED: 'Saving is not supported!',
         LOADING_NOT_SUPPORTED: 'Loading is not supported!',
+        DEFAULT_LANGUAGE: 'Language',
+        LOCALE: {
+            fa: 'Farsi',
+            en: 'English',
+        },
+        FARSI: 'Farsi',
+        ENGLISH: 'English',
+        SETTINGS_SAVED_SUCCESSFULLY: 'Settings updated.',
     };
 } else if (MINESWEEPER_DEFAULT_LOCALE === 'fa') {
     LOCALIZATION_STRINGS = {
@@ -49,8 +57,8 @@ if (MINESWEEPER_DEFAULT_LOCALE === 'en') {
         STATISTICS: 'آمار',
         HELP: 'راهنما',
         ABOUT: 'درباره',
-        MESSAGE_WON: 'تبریک، شما برنده شدید!</br>',
-        MESSAGE_LOST: 'متاسفانه بازنده شدید. دفعه دیگه خوش شانس باشی!</br>',
+        MESSAGE_WON: 'تبریک، شما برنده شدید!',
+        MESSAGE_LOST: 'متاسفانه بازنده شدید. دفعه دیگه خوش شانس باشی!',
         SAVED_AS: 'ذخیره شد به عنوان',
         DIFFICULTY: 'درجه سختی',
         DIFFICULTY_LEVELS: {
@@ -78,5 +86,13 @@ if (MINESWEEPER_DEFAULT_LOCALE === 'en') {
         GAMES_PLAYED: 'تعداد بازی',
         GAMES_WON: 'تعداد بازی برده',
         LOADING_NOT_SUPPORTED: 'بارگذاری پشتیبانی نمی‎شود',
+        DEFAULT_LANGUAGE: 'زبان',
+        LOCALE: {
+            fa: 'فارسی',
+            en: 'انگلیسی',
+        },
+        FARSI: 'فارسی',
+        ENGLISH: 'انگلیسی',
+        SETTINGS_SAVED_SUCCESSFULLY: 'تنظیمات به روز رسانی شد.',
     };
 }

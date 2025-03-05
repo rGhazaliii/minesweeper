@@ -16,6 +16,7 @@
 
     var checkBrowser = function () {
         var browser = game.browser.create();
+
         return (browser && browser.isCompatible());
     };
 

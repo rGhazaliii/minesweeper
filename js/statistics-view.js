@@ -4,6 +4,7 @@
 
 (function () {
     var game = this.minesweeperGame = this.minesweeperGame || {};
+    MINESWEEPER_DEFAULT_LOCALE = game.config.getLocale();
 
     var statsView = game.statsView = {
         getInfo: function (bestTime, played, won) {
@@ -29,9 +30,9 @@
         var duration = (bestTime.hasOwnProperty('duration')) ? bestTime.duration : '';
         var date = (bestTime.hasOwnProperty('timestamp')) ? ' (' + convertTimestamp(bestTime.timestamp) + ') ' : '';
 
-        otp += 'Best time: <span class="color-f3473e font-bold">' + duration + date + '</span><br/>';
-        otp += 'Games won: <span class="color-f3473e font-bold">' + gamesWon + '</span><br/>';
-        otp += 'Games played: <span class="color-f3473e font-bold">' + gamesPlayed + '</span><br/>';
+        otp += LOCALIZATION_STRINGS.BEST_TIME + ': <span class="color-f3473e font-bold">' + duration + date + '</span><br/>';
+        otp += LOCALIZATION_STRINGS.GAMES_WON + ': <span class="color-f3473e font-bold">' + gamesWon + '</span><br/>';
+        otp += LOCALIZATION_STRINGS.GAMES_PLAYED + ': <span class="color-f3473e font-bold">' + gamesPlayed + '</span><br/>';
 
         return otp;
     };
@@ -46,9 +47,9 @@
         var duration = (bestTime.hasOwnProperty('duration')) ? bestTime.duration : '';
         var date = (bestTime.hasOwnProperty('timestamp')) ? ' (' + convertTimestamp(bestTime.timestamp) + ') ' : '';
 
-        otp += 'Best time: <span class="color-f3473e font-bold">' + duration + date + '</span><br/>';
-        otp += 'Games won: <span class="color-f3473e font-bold">' + gamesWon + '</span><br/>';
-        otp += 'Games played: <span class="color-f3473e font-bold">' + gamesPlayed + '</span><br/>';
+        otp += LOCALIZATION_STRINGS.BEST_TIME + ': <span class="color-f3473e font-bold">' + duration + date + '</span><br/>';
+        otp += LOCALIZATION_STRINGS.GAMES_WON + ': <span class="color-f3473e font-bold">' + gamesWon + '</span><br/>';
+        otp += LOCALIZATION_STRINGS.GAMES_PLAYED + ': <span class="color-f3473e font-bold">' + gamesPlayed + '</span><br/>';
 
         return otp;
     };
@@ -63,9 +64,9 @@
         var duration = (bestTime.hasOwnProperty('duration')) ? bestTime.duration : '';
         var date = (bestTime.hasOwnProperty('timestamp')) ? ' (' + convertTimestamp(bestTime.timestamp) + ') ' : '';
 
-        otp += 'Best time: <span class="color-f3473e font-bold">' + duration + date + '</span><br/>';
-        otp += 'Games won: <span class="color-f3473e font-bold">' + gamesWon + '</span><br/>';
-        otp += 'Games played: <span class="color-f3473e font-bold">' + gamesPlayed + '</span><br/>';
+        otp += LOCALIZATION_STRINGS.BEST_TIME + ': <span class="color-f3473e font-bold">' + duration + date + '</span><br/>';
+        otp += LOCALIZATION_STRINGS.GAMES_WON + ': <span class="color-f3473e font-bold">' + gamesWon + '</span><br/>';
+        otp += LOCALIZATION_STRINGS.GAMES_PLAYED + ': <span class="color-f3473e font-bold">' + gamesPlayed + '</span><br/>';
 
         return otp;
     };

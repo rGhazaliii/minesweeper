@@ -13,6 +13,7 @@
         save: function (key, value) {
             if (checkCompatibility()) {
                 localStorage.setItem(key, value);
+
                 return true;
             } else {
                 alert(LOCALIZATION_STRINGS.SAVING_NOT_SUPPORTED);

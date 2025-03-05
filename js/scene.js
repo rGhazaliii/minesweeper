@@ -6,6 +6,8 @@
     var game = this.minesweeperGame = this.minesweeperGame || {};
     var checkedDifficulty = '#difficulty input[name="difficulty"]:checked';
     var difficultyArray = '#difficulty input[name="difficulty"]';
+    var checkedLanguage = '#language input[name="language"]:checked';
+    var languageArray = '#language input[name="language"]';
 
     var scene = {
         node: document.querySelector('.scene'),
@@ -55,12 +57,20 @@
         document.getElementById('options-btn').onclick = function () {
             optionsScene.node.appendChild(scene.backToStartBtn);
             optionsScene.setLoadedDifficulty(game.config.getDifficulty());
+            optionsScene.setLoadedLocale(game.config.getLocale());
 
             var saveBlock = document.getElementById('save-block-btn');
             var saveBtn = document.getElementById('save-btn');
             saveBtn.onclick = function () {
-                var selected = document.querySelector(checkedDifficulty).value;
-                game.config.setDifficulty(selected);
+                var selectedDifficulty = document.querySelector(checkedDifficulty).value;
+                var difficultyResult = game.config.setDifficulty(selectedDifficulty);
+
+                var selectedLanguage = document.querySelector(checkedLanguage).value;
+                var languageResult = game.config.setLocale(selectedLanguage);
+
+                if (difficultyResult && languageResult) {
+                    alert(LOCALIZATION_STRINGS.SETTINGS_SAVED_SUCCESSFULLY);
+                }
             };
 
             optionsScene.node.appendChild(saveBlock);
@@ -69,6 +79,16 @@
     };
     optionsScene.setLoadedDifficulty = function (checked) {
         var arr = document.querySelectorAll(difficultyArray);
+
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].value === checked) {
+                arr[i].checked = true;
+                break;
+            }
+        }
+    };
+    optionsScene.setLoadedLocale = function (checked) {
+        var arr = document.querySelectorAll(languageArray);
 
         for (var i = 0; i < arr.length; i++) {
             if (arr[i].value === checked) {
