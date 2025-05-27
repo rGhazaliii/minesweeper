@@ -4,7 +4,6 @@
 
 (function () {
     var game = this.minesweeperGame = this.minesweeperGame || {};
-    MINESWEEPER_DEFAULT_LOCALE = game.config.getLocale();
 
     var statsView = game.statsView = {
         getInfo: function (bestTime, played, won) {

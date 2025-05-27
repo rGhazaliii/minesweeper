@@ -6,6 +6,7 @@
     var game = this.minesweeperGame = this.minesweeperGame || {};
     var DIFFICULTY_KEY = 'difficulty';
     var LOCALE_KEY = 'locale';
+    var DIR_KEY = 'dir';
 
     game.DIFFICULTY_BEGINNER = 'beginner';
     game.DIFFICULTY_INTERMEDIATE = 'intermediate';
@@ -35,6 +36,12 @@
             return (loaded !== 'undefined' && loaded) ? loaded : this.locale;
         },
         setLocale: function (value) {
+            if (value === 'fa') {
+                game.storage.save(DIR_KEY, 'rtl');
+            } else {
+                game.storage.save(DIR_KEY, 'ltr');
+            }
+
             var saveResult = game.storage.save(LOCALE_KEY, value);
             this.locale = value;
 
