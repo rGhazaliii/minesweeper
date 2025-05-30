@@ -27,3 +27,4 @@ document.getElementById('save-hint').innerText = LOCALIZATION_STRINGS.SAVE_HINT;
 document.getElementById('language-header').innerText = LOCALIZATION_STRINGS.DEFAULT_LANGUAGE;
 document.getElementById('language-fa-hint').innerText = LOCALIZATION_STRINGS.FARSI;
 document.getElementById('language-en-hint').innerText = LOCALIZATION_STRINGS.ENGLISH;
+document.getElementById('language-ur-hint').innerText = LOCALIZATION_STRINGS.URDU;

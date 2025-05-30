@@ -12,7 +12,7 @@ if (MINESWEEPER_DEFAULT_LOCALE === 'en') {
         ABOUT: 'About',
         MESSAGE_WON: 'Congratulations, you won the game!<br/>',
         MESSAGE_LOST: 'Sorry, you lost this game. Better luck next time!<br/>',
-        SAVED_AS: 'saved as',
+        SAVED_AS: 'Saved as',
         DIFFICULTY: 'Difficulty',
         DIFFICULTY_LEVELS: {
             beginner: 'Beginner',
@@ -44,9 +44,11 @@ if (MINESWEEPER_DEFAULT_LOCALE === 'en') {
         LOCALE: {
             fa: 'Farsi',
             en: 'English',
+            ur: 'Urdu',
         },
         FARSI: 'Farsi',
         ENGLISH: 'English',
+        URDU: 'Urdu',
         SETTINGS_SAVED_SUCCESSFULLY: 'Settings updated.',
     };
 } else if (MINESWEEPER_DEFAULT_LOCALE === 'fa') {
@@ -70,7 +72,6 @@ if (MINESWEEPER_DEFAULT_LOCALE === 'en') {
             ADVANCED_HINT: 'پیشرفته - 99 مین - صفحه 16 * 30',
         },
         HELP_CONTENT: 'مین‎روب یک آزمون فریبنده ساده برای حافظه و استدلال و یکی از محبوب ترین بازی های ویندوز است. تمام دوران هدف این است که مربع های خالی را پیدا کنید و از معادن اجتناب کنید. آسان به نظر می رسد، درست است؟',
-        ABOUT_CONTENT: "توسعه توسط  برای تفریح.",
         DEVELOPED_BY_CONTENT: 'مین‎روب بر پایۀ HTML5 توسعه داده شده توسط',
         FOR_FUN_CONTENT: 'برای سرگرمی',
         YEAR_MESSAGE: "ساخته شده با عشق در 1396",
@@ -90,9 +91,59 @@ if (MINESWEEPER_DEFAULT_LOCALE === 'en') {
         LOCALE: {
             fa: 'فارسی',
             en: 'انگلیسی',
+            ur: 'اردو',
         },
         FARSI: 'فارسی',
         ENGLISH: 'انگلیسی',
+        URDU: 'اردو',
         SETTINGS_SAVED_SUCCESSFULLY: 'تنظیمات به روز رسانی شد.',
+    };
+} else if (MINESWEEPER_DEFAULT_LOCALE === 'ur') {
+    LOCALIZATION_STRINGS = {
+        GAME_NAME: 'مائن سویپر',
+        NEW_GAME: 'نیا گیم',
+        OPTIONS: 'اختیارات',
+        STATISTICS: 'شماریات',
+        HELP: 'مدد',
+        ABOUT: 'کے بارے میں',
+        MESSAGE_WON: 'مبارک ہو، آپ گیم جیت گئے!',
+        MESSAGE_LOST: 'معذرت، آپ یہ گیم ہار گئے۔ اگلی بار اچھی قسمت!',
+        SAVED_AS: 'کے طور پر محفوظ کیا',
+        DIFFICULTY: 'سختی',
+        DIFFICULTY_LEVELS: {
+            beginner: 'ابتدائی',
+            intermediate: 'انٹرمیڈیٹ',
+            advanced: 'ترقی یافتہ',
+            BEGINNER_HINT: 'ابتدائی - 10 بارودی سرنگیں - صفحہ 9 * 9',
+            INTERMEDIATE_HINT: 'درمیانہ - 40 بارودی سرنگیں - صفحہ 16 * 16',
+            ADVANCED_HINT: 'اعلی درجے کی - 99 بارودی سرنگیں - صفحہ 16 * 30',
+        },
+        HELP_CONTENT: 'مائن سویپر میموری اور استدلال کا دھوکہ دہی سے آسان ٹیسٹ ہے اور ونڈوز کے مشہور گیمز میں سے ایک ہے۔' +
+            'ہر وقت کا مقصد خالی چوکوں کو تلاش کرنا اور بارودی سرنگوں سے بچنا ہے۔ آسان لگتا ہے، ٹھیک ہے؟',
+        DEVELOPED_BY_CONTENT: 'مائن سویپر HTML5 گیم تیار کیا گیا ہے',
+        FOR_FUN_CONTENT: 'تفریح ​​کے لیے',
+        YEAR_MESSAGE: "2017 میں محبت کے ساتھ تخلیق کیا گیا",
+        MAIN_MENU: 'مین مینو',
+        SAVE: 'محفوظ کریں',
+        SAVE_HINT: 'جب آپ براؤزر بند کرتے ہیں تب بھی آپ کی ترتیبات محفوظ ہوجاتی ہیں',
+        GAME_LOST_TITLE: 'کھیل ہار گئے',
+        GAME_WON_TITLE: 'کھیل جیت لیا',
+        BROWSER_INCOMPATIBLE_MESSAGE: 'آپ کا براؤزر پرانا ہے۔ براہ کرم اپ ڈیٹ کریں!',
+        SECONDS: 'سیکنڈز',
+        TIME: 'وقت',
+        BEST_TIME: 'بہترین وقت',
+        GAMES_PLAYED: 'گیمز کی تعداد',
+        GAMES_WON: 'جیتنے والے کھیلوں کی تعداد',
+        LOADING_NOT_SUPPORTED: 'اپ لوڈ تعاون یافتہ نہیں ہے',
+        DEFAULT_LANGUAGE: 'زبان',
+        LOCALE: {
+            fa: 'فارسی',
+            en: 'انگریزی',
+            ur: 'اردو',
+        },
+        FARSI: 'فارسی',
+        ENGLISH: 'انگریزی',
+        URDU: 'اردو',
+        SETTINGS_SAVED_SUCCESSFULLY: 'ترتیبات اپ ڈیٹ ہو گئیں۔',
     };
 }
